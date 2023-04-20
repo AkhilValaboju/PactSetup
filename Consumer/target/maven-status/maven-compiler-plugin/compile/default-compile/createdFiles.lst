@@ -1,0 +1,8 @@
+au\com\dius\pactworkshop\consumer\ConsoleInterface.class
+au\com\dius\pactworkshop\consumer\ConsumerApplication.class
+au\com\dius\pactworkshop\consumer\ProductService$1.class
+au\com\dius\pactworkshop\consumer\ProductServiceTest.class
+au\com\dius\pactworkshop\consumer\ProductServiceConfig.class
+au\com\dius\pactworkshop\consumer\ProductService.class
+au\com\dius\pactworkshop\consumer\Product.class
+au\com\dius\pactworkshop\consumer\ProductConsumerPactTest.class

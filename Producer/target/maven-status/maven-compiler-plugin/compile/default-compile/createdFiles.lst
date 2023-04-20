@@ -1,0 +1,6 @@
+au\com\dius\pactworkshop\provider\ProductPactProviderTest.class
+au\com\dius\pactworkshop\provider\ProductRepository.class
+au\com\dius\pactworkshop\provider\ProductController.class
+au\com\dius\pactworkshop\provider\Product.class
+au\com\dius\pactworkshop\provider\ProviderApplication.class
+au\com\dius\pactworkshop\provider\AuthFilter.class

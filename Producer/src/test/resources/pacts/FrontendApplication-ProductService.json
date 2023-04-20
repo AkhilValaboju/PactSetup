@@ -1,0 +1,264 @@
+{
+  "provider": {
+    "name": "ProductService"
+  },
+  "consumer": {
+    "name": "FrontendApplication"
+  },
+  "interactions": [
+    {
+      "description": "get all products",
+      "request": {
+        "method": "GET",
+        "path": "/products",
+        "headers": {
+          "Authorization": "Bearer 뮾䥒?"
+        },
+        "matchingRules": {
+          "header": {
+            "Authorization": {
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "Bearer .*"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": []
+      },
+      "providerStates": [
+        {
+          "name": "no products exist"
+        }
+      ]
+    },
+    {
+      "description": "get product by ID 10 with no auth token",
+      "request": {
+        "method": "GET",
+        "path": "/product/10"
+      },
+      "response": {
+        "status": 401
+      },
+      "providerStates": [
+        {
+          "name": "product with ID 10 exists"
+        }
+      ]
+    },
+    {
+      "description": "get product with ID 10",
+      "request": {
+        "method": "GET",
+        "path": "/product/10",
+        "headers": {
+          "Authorization": "Bearer"
+        },
+        "matchingRules": {
+          "header": {
+            "Authorization": {
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "Bearer .*"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "28 Degrees",
+          "id": "10",
+          "type": "CREDIT_CARD"
+        },
+        "matchingRules": {
+          "body": {
+            "$.id": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.type": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.name": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        }
+      },
+      "providerStates": [
+        {
+          "name": "product with ID 10 exists"
+        }
+      ]
+    },
+    {
+      "description": "get product with ID 11",
+      "request": {
+        "method": "GET",
+        "path": "/product/11",
+        "headers": {
+          "Authorization": "Bearer"
+        },
+        "matchingRules": {
+          "header": {
+            "Authorization": {
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "Bearer .*"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 404
+      },
+      "providerStates": [
+        {
+          "name": "product with ID 11 does not exist"
+        }
+      ]
+    },
+    {
+      "description": "get all products",
+      "request": {
+        "method": "GET",
+        "path": "/products",
+        "headers": {
+          "Authorization": "Bearer "
+        },
+        "matchingRules": {
+          "header": {
+            "Authorization": {
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "Bearer .*"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "name": "Gem Visa",
+            "id": "09",
+            "type": "CREDIT_CARD"
+          },
+          {
+            "name": "Gem Visa",
+            "id": "09",
+            "type": "CREDIT_CARD"
+          }
+        ],
+        "matchingRules": {
+          "body": {
+            "$": {
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 2
+                }
+              ],
+              "combine": "AND"
+            },
+            "$[*].id": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$[*].type": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$[*].name": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        }
+      },
+      "providerStates": [
+        {
+          "name": "products exist"
+        }
+      ]
+    },
+    {
+      "description": "get all products with no auth token",
+      "request": {
+        "method": "GET",
+        "path": "/products"
+      },
+      "response": {
+        "status": 401
+      },
+      "providerStates": [
+        {
+          "name": "products exist"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    },
+    "pact-jvm": {
+      "version": "4.0.10"
+    }
+  }
+}
